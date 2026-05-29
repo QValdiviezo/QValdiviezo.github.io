@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Terapia Física Valdiviezo - Piura</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HEADER Y NAVEGACIÓN -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-section">
+                <img src="assets/images/logo.webp" alt="Logo Centro de Terapia Física Valdiviezo" class="logo-img">
+                <div>
+                    <h1 class="logo">Centro de Terapia Física Valdiviezo</h1>
+                </div>
+            </div>
+            <nav class="navbar">
+                <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Alternar modo oscuro">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 4.5a.75.75 0 0 1 .75-.75h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 12 4.5Zm5.5 6.75a.75.75 0 0 1 .75-.75v-.5a.75.75 0 0 1-1.5 0v.5a.75.75 0 0 1 .75.75Zm-11 0a.75.75 0 0 1 .75-.75v-.5a.75.75 0 0 1-1.5 0v.5a.75.75 0 0 1 .75.75Zm5.75 6.25a.75.75 0 0 1 .75.75v.5a.75.75 0 0 1-1.5 0v-.5a.75.75 0 0 1 .75-.75Zm4.607-11.607a.75.75 0 0 1 1.06 1.06l-.354.354a.75.75 0 1 1-1.06-1.06l.354-.354Zm-8.914 8.914a.75.75 0 0 1 1.06 1.06l-.354.354a.75.75 0 1 1-1.06-1.06l.354-.354Zm8.914 0l.354.354a.75.75 0 0 1-1.06 1.06l-.354-.354a.75.75 0 0 1 1.06-1.06Zm-8.914-8.914l.354.354a.75.75 0 0 1-1.06 1.06l-.354-.354a.75.75 0 0 1 1.06-1.06ZM12 7.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Zm0 1.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/></svg>
+                </button>
+                <button class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home" class="nav-link" data-section="home">Inicio</a></li>
+                    <li><a href="#primera-visita" class="nav-link" data-section="primera-visita">Primera Visita</a></li>
+                    <li><a href="#como-llegar" class="nav-link" data-section="como-llegar">¿Cómo Llegar?</a></li>
+                    <li><button class="nav-link btn-cita-header" id="btnCitaHeader">Solicita tu Cita</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- SECCIÓN HOME -->
+        <section id="home" class="section home-section active">
+            <!-- Hero Section -->
+            <div class="hero-text-above">
+                <h2 class="hero-title">Tu salud es nuestra prioridad</h2>
+                <p class="hero-subtitle">Bienvenido a tu Recuperación</p>
+            </div>
+            <div class="hero" style="background-image: url('assets/images/hero.webp');">
+                <div class="hero-overlay"></div>
+            </div>
+
+            <!-- Presentación -->
+            <div class="container">
+                <section class="presentation">
+                    <h2>Nuestro Compromiso con tu Bienestar</h2>
+                    <p class="presentation-text">
+                        En el Centro de Terapia Física Valdiviezo, nuestro mayor compromiso es tu bienestar. Queremos expresar nuestro más sincero agradecimiento por confiar en nuestro profesionalismo y permitirnos cuidar de su salud con la excelencia que nos caracteriza. ¡Seguimos trabajando para brindarte la mejor atención!
+                    </p>
+                    <button class="btn btn-primary" id="btnCitaMain">Solicita tu Cita</button>
+                </section>
+
+                <!-- Contacto Rápido -->
+                <section class="quick-contact">
+                    <h3>Contáctanos</h3>
+                    <div class="contact-grid">
+                        <a class="contact-item contact-link" href="https://wa.me/51950874998?text=Hola,%20quisiera%20información%20sobre%20los%20servicios%20quiroprácticos." target="_blank" rel="noreferrer noopener">
+                            <div class="contact-icon">📞 💬</div>
+                            <p><strong>WhatsApp</strong></p>
+                            <p>+51 950 874 998</p>
+                        </a>
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <p><strong>Gmail</strong></p>
+                            <p>valdiviezopaicojosealonso@gmail.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <p><strong>Ubicación</strong></p>
+                            <p>Fortunato Chirichigno 161, Piura 20000, Piura, Perú</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- SECCIÓN PRIMERA VISITA -->
+        <section id="primera-visita" class="section primera-visita-section">
+            <div class="container">
+                <h2>Tu Primera Visita</h2>
+                <p class="section-subtitle">Nuestro propósito: Entender tu caso para cuidarte mejor</p>
+
+                <!-- Imagen Destacada de Terapia (Primera Visita) -->
+                <div class="contenedor-imagen-visita">
+                    <img src="assets/images/terapia1.webp" alt="Sesión de terapia física quiropráctica" class="imagen-terapia-estatica">
+                </div>
+
+                <div class="steps-container">
+                    <!-- Paso 1 -->
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <h3>Preparamos tu Historia</h3>
+                        <p>Completamos una historia clínica completa del nuevo miembro de nuestro centro. Si lo deseas, puedes traer la historia ya lista el día de tu consulta.</p>
+                    </div>
+
+                    <!-- Paso 2 -->
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <h3>Entrevista Personalizada</h3>
+                        <p>Realizamos una entrevista detallada para conocer más de tu caso, tus síntomas y antecedentes médicos relevantes.</p>
+                    </div>
+
+                    <!-- Paso 3 -->
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <h3>Evaluación Física Completa</h3>
+                        <p>Hacemos una evaluación física exhaustiva de tu columna vertebral y estructuras relacionadas para identificar problemas.</p>
+                    </div>
+
+                    <!-- Paso 4 -->
+                    <div class="step-card">
+                        <div class="step-number">04</div>
+                        <h3>Análisis Radiográfico</h3>
+                        <p>Solicitaremos placas radiográficas específicas para visualizar tu condición actual, evaluar el grado de daño y determinar la técnica adecuada. (Excepto en casos que el quiropráctico determine).</p>
+                    </div>
+
+                    <!-- Paso 5 -->
+                    <div class="step-card">
+                        <div class="step-number">05</div>
+                        <h3>Plan Personalizado</h3>
+                        <p>Elaboramos un plan de cuidado personalizado basado en tus resultados. Te entregaremos un reporte detallado con recomendaciones específicas.</p>
+                    </div>
+
+                    <!-- Paso 6 -->
+                    <div class="step-card">
+                        <div class="step-number">06</div>
+                        <h3>Seguimiento Continuo</h3>
+                        <p>Periódicamente re-evaluamos tu progreso mediante radiografías comparativas para monitorear cambios y restaurar la alineación.</p>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h3>¿Listo para comenzar tu recuperación?</h3>
+                    <button class="btn btn-primary" id="btnCitaPrimeraVisita">Contáctanos / Agendar Cita</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CÓMO LLEGAR -->
+        <section id="como-llegar" class="section como-llegar-section">
+            <div class="container">
+                <h2>¿Cómo Llegar?</h2>
+                <p class="section-subtitle">Ubícanos en Piura</p>
+
+                <!-- Mapa -->
+                <div class="map-container">
+                    <!-- Mapa responsive: clase `map-iframe` controla ancho/alto y estilo visual -->
+                    <iframe class="map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.4696265850584!2d-80.62931410336456!3d-5.188609760356421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a115ae4ff922b%3A0xea6cd14b0464b856!2sQUIROPR%C3%81CTICO%20-%20VALDIVIEZO!5e0!3m2!1ses-419!2spe!4v1779996478460!5m2!1ses-419!2spe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <!-- Información de Ubicación -->
+                <div class="location-info como-llegar-tarjeta">
+                    <h3 class="titulo-azul">Centro de Terapia Física Valdiviezo</h3>
+
+                    <div class="contenedor-info-foto-flex">
+                        <div class="foto-quirop">
+                            <img src="assets/img/quiropractico-valdiviezo.png" alt="Quiropráctico Valdiviezo con modelo de columna">
+                        </div>
+                        <div class="contacto-info-cuadro">
+                            <div class="location-details">
+                                <p><strong>📍 Dirección:</strong> Fortunato Chirichigno 161, Piura 20000, Piura, Perú</p>
+                                <p><strong>📞💬 WhatsApp:</strong> +51 950 874 998</p>
+                                <p><strong>📧 Email:</strong> valdiviezopaicojosealonso@gmail.com</p>
+                                <p><strong>⏰ Horario:</strong> Lunes a Sábado - 9:00 AM a 1:00 PM - 5:00 PM a 11:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Centro de Terapia Física Valdiviezo. Todos los derechos reservados.</p>
+            <p>Piura, Perú</p>
+        </div>
+    </footer>
+
+    <!-- MODAL FORMULARIO -->
+    <div id="citaModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <h2>Solicita tu Cita</h2>
+            <form id="citaForm">
+                <div class="form-group">
+                    <label for="nombres">Nombres y Apellidos *</label>
+                    <input type="text" id="nombres" name="nombres" required placeholder="Ej: Juan Pérez García">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo Electrónico *</label>
+                    <input type="email" id="email" name="email" required placeholder="Ej: juan@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Número de Teléfono *</label>
+                    <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 951234567">
+                </div>
+
+                <div class="form-group">
+                    <label for="dni">DNI *</label>
+                    <input type="text" id="dni" name="dni" required placeholder="Ej: 12345678">
+                </div>
+
+                <div class="form-group">
+                    <label for="provincia">Provincia *</label>
+                    <select id="provincia" name="provincia" required>
+                        <option value="">Selecciona una provincia</option>
+                        <option value="Piura">Piura</option>
+                        <option value="Ayabaca">Ayabaca</option>
+                        <option value="Huancabamba">Huancabamba</option>
+                        <option value="Morropón">Morropón</option>
+                        <option value="Paita">Paita</option>
+                        <option value="Sechura">Sechura</option>
+                        <option value="Sullana">Sullana</option>
+                        <option value="Talara">Talara</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensaje">Mensaje Adicional</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos brevemente tu caso o consulta..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-submit">Enviar y Contactar por WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
