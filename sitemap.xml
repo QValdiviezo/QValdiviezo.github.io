@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://quiropracticovaldiviezo.netlify.app/</loc>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://quiropracticovaldiviezo.netlify.app/fisioterapia.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://quiropracticovaldiviezo.netlify.app/condiciones-y-dolores.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://quiropracticovaldiviezo.netlify.app/primera-visita.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://quiropracticovaldiviezo.netlify.app/como-llegar.html</loc>
+    <priority>0.80</priority>
+  </url>
+</urlset>
