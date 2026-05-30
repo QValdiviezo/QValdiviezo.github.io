@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiropráctico en Piura | Centro de Terapia Física Valdiviezo</title>
-    <meta name="description" content="Especialistas en fisioterapia, quiropraxia y rehabilitación en Piura. Agenda tu cita en el Centro de Terapia Física Valdiviezo y despídete de los dolores.">
+    <title>Fisioterapia en Piura | Tratamientos y Especialistas - Valdiviezo</title>
+    <meta name="description" content="Conoce nuestros programas de fisioterapia en Piura. Ayuda profesional para tratar lesiones, recuperar movilidad y mejorar tu calidad de vida.">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- HEADER Y NAVEGACIÓN -->
+    <!-- HEADER Y NAVEGACIÓN (reutilizable) -->
     <header class="header">
         <div class="container">
             <a href="index.html" class="logo-section" style="text-decoration: none; color: inherit;">
@@ -44,56 +44,43 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main>
-        <!-- SECCIÓN HOME -->
-        <section id="home" class="section home-section active">
-            <!-- Hero Section -->
-            <div class="hero-text-above">
-                <h1 class="hero-title">Centro de Terapia Física Valdiviezo: Tu Quiropráctico en Piura</h1>
-                <h2 class="hero-subtitle">Bienvenido a tu Recuperación</h2>
-            </div>
-            <div class="hero" style="background-image: url('assets/images/hero.webp');">
-                <div class="hero-overlay"></div>
-            </div>
-
-            <!-- Presentación -->
+        <section class="section active" id="fisioterapia">
             <div class="container">
-                <section class="presentation">
-                    <div class="presentation-card">
-                        <h2>Nuestro Compromiso con tu Bienestar</h2>
-                        <p class="presentation-text">
-                            En el Centro de Terapia Física Valdiviezo, nuestro mayor compromiso es tu bienestar. Queremos expresar nuestro más sincero agradecimiento por confiar en nuestro profesionalismo y permitirnos cuidar de su salud con la excelencia que nos caracteriza. ¡Seguimos trabajando para brindarte la mejor atención!
-                        </p>
-                        <button class="btn btn-primary" id="btnCitaMain">Solicita tu Cita</button>
-                    </div>
-                </section>
+                <div class="presentation-card">
+                    <h1>Fisioterapia y Rehabilitación</h1>
+                    <p class="presentation-text">
+                        En el Centro de Terapia Física Valdiviezo ofrecemos programas de fisioterapia diseñados por especialistas en fisioterapia para tratar lesiones, reducir el dolor y recuperar movilidad. Nuestros tratamientos integrales combinan técnicas manuales, ejercicios terapéuticos y seguimiento personalizado para que vuelvas a tu actividad cotidiana con seguridad.
+                    </p>
+                </div>
 
-                <!-- Contacto Rápido -->
-                <section class="quick-contact">
-                    <h3>Contáctanos</h3>
-                    <div class="contact-grid">
-                        <a class="contact-item contact-link" href="https://wa.me/51950874998?text=Hola,%20quisiera%20información%20sobre%20los%20servicios%20quiroprácticos." target="_blank" rel="noreferrer noopener">
-                            <div class="contact-icon">📞 💬</div>
-                            <p><strong>WhatsApp</strong></p>
-                            <p>+51 950 874 998</p>
-                        </a>
-                        <div class="contact-item">
-                            <div class="contact-icon">📧</div>
-                            <p><strong>Gmail</strong></p>
-                            <p>valdiviezopaicojosealonso@gmail.com</p>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">📍</div>
-                            <p><strong>Ubicación</strong></p>
-                            <p>Fortunato Chirichigno 161, Piura 20000, Piura, Perú</p>
-                        </div>
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-number">01</div>
+                        <h3>Evaluación Inicial</h3>
+                        <p>Valoración detallada por nuestro especialista en fisioterapia para identificar la causa del dolor y diseñar un plan de tratamiento.</p>
                     </div>
-                </section>
+
+                    <div class="step-card">
+                        <div class="step-number">02</div>
+                        <h3>Tratamientos Personalizados</h3>
+                        <p>Programas adaptados que incluyen terapia manual, ejercicios de fortalecimiento y técnicas para recuperar movilidad y función.</p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">03</div>
+                        <h3>Rehabilitación Funcional</h3>
+                        <p>Seguimiento y ejercicios dirigidos a tu recuperación completa, con énfasis en prevención de recaídas y mejora de la calidad de vida.</p>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h3>¿Necesitas ayuda profesional?</h3>
+                    <p class="section-subtitle">Nuestro especialista en fisioterapia está listo para ayudarte con programas de rehabilitación y control del dolor.</p>
+                    <button class="btn btn-primary" id="btnCitaMain">Solicita tu Cita</button>
+                </div>
             </div>
         </section>
-
-        <!-- note: primera-visita and como-llegar moved to dedicated pages -->
     </main>
 
     <!-- FOOTER -->
@@ -104,7 +91,7 @@
         </div>
     </footer>
 
-    <!-- MODAL FORMULARIO -->
+    <!-- MODAL FORMULARIO (reutilizable) -->
     <div id="citaModal" class="modal">
         <div class="modal-content">
             <button class="close-modal" id="closeModal">&times;</button>
@@ -135,13 +122,8 @@
                     <select id="provincia" name="provincia" required>
                         <option value="">Selecciona una provincia</option>
                         <option value="Piura">Piura</option>
-                        <option value="Ayabaca">Ayabaca</option>
-                        <option value="Huancabamba">Huancabamba</option>
-                        <option value="Morropón">Morropón</option>
                         <option value="Paita">Paita</option>
-                        <option value="Sechura">Sechura</option>
                         <option value="Sullana">Sullana</option>
-                        <option value="Talara">Talara</option>
                     </select>
                 </div>
 

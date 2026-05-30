@@ -79,14 +79,6 @@ body.dark-mode .footer p {
     color: #ffffff;
 }
 
-body.dark-mode .contact-item,
-body.dark-mode .location-info,
-body.dark-mode .step-card,
-body.dark-mode .presentation-text,
-body.dark-mode .modal-content {
-    background: #172135;
-    border-color: #2e3b57;
-}
 
 body.dark-mode .nav-link {
     color: #e5e7eb;
@@ -141,8 +133,11 @@ body.dark-mode .hero-subtitle {
 }
 
 .logo-img {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    flex-shrink: 0;
     object-fit: contain;
     border-radius: 10px;
     background: var(--white);
@@ -196,13 +191,21 @@ body.dark-mode .hero-subtitle {
     border: 1px solid rgba(0,0,0,0.08);
     background: var(--white);
     color: var(--primary-blue);
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
+    width: auto;
+    padding: 6px 14px;
+    border-radius: 25px;
     margin-right: 1rem;
     cursor: pointer;
     transition: var(--transition);
 }
+
+.dark-mode-toggle svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.theme-text { margin-left: 8px; font-size: 0.95rem; font-weight: 600; }
 
 .dark-mode-toggle:hover {
     background: var(--secondary-blue);
@@ -213,6 +216,62 @@ body.dark-mode .hero-subtitle {
     list-style: none;
     gap: var(--spacing-lg);
     align-items: center;
+}
+
+/* Dropdown (Servicios) */
+.nav-item {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--white);
+    list-style: none;
+    padding: 0.5rem 0;
+    padding-top: 8px; /* evita el hueco entre el elemento padre y el dropdown */
+    margin-top: 0;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    min-width: 220px;
+    display: none;
+    z-index: 1500;
+}
+
+.dropdown-menu li {
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.6rem 1rem;
+    color: var(--dark-gray);
+    text-decoration: none;
+}
+
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+/* Mobile: show dropdown inside the vertical menu when it's expanded */
+@media (max-width: 768px) {
+    .nav-menu .dropdown-menu {
+        display: none;
+        position: static;
+        background: var(--secondary-blue);
+        box-shadow: none;
+        min-width: auto;
+        padding: 0;
+    }
+
+    .nav-menu.active .nav-item.open .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu a {
+        padding-left: calc(var(--spacing-lg));
+    }
 }
 
 @media (min-width: 768px) {
@@ -269,13 +328,13 @@ body.dark-mode .hero-subtitle {
         flex-direction: column;
         gap: 0;
         max-height: 0;
-        overflow: hidden;
+        overflow-y: auto;
         transition: max-height 0.3s ease;
         box-shadow: var(--shadow-md);
     }
 
     .nav-menu.active {
-        max-height: 400px;
+        max-height: 100vh;
     }
 
     .nav-menu li {
@@ -393,24 +452,7 @@ body.dark-mode .hero-subtitle {
 
 /* ==================== SECCIONES GENERALES ==================== */
 .section {
-    display: none;
     padding: var(--spacing-xxl) 0;
-}
-
-.section.active {
-    display: block;
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .section h2 {
@@ -418,35 +460,41 @@ body.dark-mode .hero-subtitle {
     color: var(--primary-blue);
     margin-bottom: var(--spacing-lg);
     text-align: center;
+    font-weight: 700;
+}
+
+.section h1 {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    font-weight: 700;
 }
 
 .section-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    line-height: 1.8;
     color: var(--medium-gray);
     text-align: center;
-    margin-bottom: var(--spacing-xxl);
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl);
 }
 
-/* ==================== PRESENTATION SECTION ==================== */
-.presentation {
+.presentation-card {
+    background-color: var(--secondary-blue);
+    padding: var(--spacing-xl);
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-blue);
     text-align: center;
-    margin-bottom: var(--spacing-xxl);
-}
-
-.presentation h2 {
-    margin-bottom: var(--spacing-lg);
+    max-width: 900px;
+    margin: 0 auto 4rem auto;
 }
 
 .presentation-text {
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--medium-gray);
-    max-width: 800px;
-    margin: 0 auto var(--spacing-xl);
-    background-color: var(--secondary-blue);
-    padding: var(--spacing-xl);
-    border-radius: 10px;
-    border-left: 5px solid var(--primary-blue);
+    margin-bottom: 0;
 }
 
 /* ==================== BOTONES ==================== */
@@ -479,6 +527,16 @@ body.dark-mode .hero-subtitle {
 
 .btn-submit {
     width: 100%;
+}
+
+/* ==================== PRESENTATION ==================== */
+.presentation {
+    text-align: center;
+}
+
+.presentation .btn {
+    display: inline-block;
+    margin-top: var(--spacing-lg);
 }
 
 /* ==================== QUICK CONTACT ==================== */
@@ -536,6 +594,23 @@ body.dark-mode .hero-subtitle {
 /* ==================== PRIMERA VISITA ==================== */
 .primera-visita-section {
     background-color: var(--white);
+}
+
+.primera-visita-section h2 {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    font-weight: 700;
+}
+
+.primera-visita-section .section-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--medium-gray);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl);
 }
 
 .steps-container {
@@ -602,6 +677,23 @@ body.dark-mode .hero-subtitle {
 /* ==================== COMO LLEGAR ==================== */
 .como-llegar-section {
     background-color: var(--light-gray);
+}
+
+.como-llegar-section h2 {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    font-weight: 700;
+}
+
+.como-llegar-section .section-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--medium-gray);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl);
 }
 
 .map-container {
@@ -850,20 +942,13 @@ body.dark-mode .hero-subtitle {
 }
 
 .footer p {
-    margin: var(--spacing-sm) 0;
+    margin: var(--spacing-xs) 0;
+    font-size: 1rem;
+    color: var(--white);
 }
 
-/* ==================== RESPONSIVE ==================== */
+/* ==================== RESPONSIVE - 768px ==================== */
 @media (max-width: 768px) {
-    :root {
-        --spacing-xl: 2rem;
-        --spacing-xxl: 2.5rem;
-    }
-
-    .section h2 {
-        font-size: 1.8rem;
-    }
-
     .section-subtitle {
         font-size: 1rem;
     }

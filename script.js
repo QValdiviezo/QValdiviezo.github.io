@@ -1,6 +1,4 @@
-/* ==================== CONFIGURACIÓN INICIAL ==================== */
-// TODO: REEMPLAZA ESTE NÚMERO CON TU NÚMERO DE WHATSAPP
-// Formato: código de país + número (ejemplo: 51945123456 para Perú)
+
 const WHATSAPP_NUMBER = '51950874998'; // Cambia este número por el tuyo
 
 /* ==================== ELEMENTOS DEL DOM ==================== */
@@ -9,7 +7,7 @@ const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('.section');
 
-// Modal y Formulario
+// Modal y Formulario (pueden no existir en todas las páginas)
 const citaModal = document.getElementById('citaModal');
 const closeModal = document.getElementById('closeModal');
 const citaForm = document.getElementById('citaForm');
@@ -18,182 +16,138 @@ const btnCitaMain = document.getElementById('btnCitaMain');
 const btnCitaPrimeraVisita = document.getElementById('btnCitaPrimeraVisita');
 const darkModeToggle = document.getElementById('darkModeToggle');
 
-/* ==================== NAVEGACIÓN ENTRE SECCIONES ==================== */
-/**
- * Cambia la sección activa al hacer clic en un enlace de navegación
- */
+/* ==================== UTILIDADES ==================== */
+function closeMenuMobile() {
+    if (navMenu) {
+        navMenu.classList.remove('active');
+        // Resetea los submenús al cerrar la navegación
+        document.querySelectorAll('.nav-item.dropdown').forEach(item => {
+            item.classList.remove('open');
+        });
+    }
+}
+
+function openModal() {
+    if (!citaModal) return;
+    citaModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModalFunction() {
+    if (!citaModal) return;
+    citaModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    if (citaForm) citaForm.reset();
+}
+
+/* ==================== NAVEGACIÓN (comportamiento estándar + toggle móvil) ==================== */
 navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
-        // Evita el comportamiento por defecto si es un botón
-        if (this.tagName === 'BUTTON') {
+        // 1. Botones (abrir modal)
+        if (this.tagName === 'BUTTON' || this.classList.contains('btn-cita-header')) {
             e.preventDefault();
-        }
-
-        // Obtén la sección a mostrar
-        const sectionId = this.getAttribute('data-section');
-        
-        // Si es un botón de cita, abre el modal en lugar de cambiar sección
-        if (this.classList.contains('btn-cita-header')) {
             openModal();
             closeMenuMobile();
             return;
         }
 
-        // Cambia la sección activa
-        if (sectionId) {
-            changeSection(sectionId);
+        // 2. Enlace de dropdown ("Servicios")
+        const href = this.getAttribute('href');
+        if (href === '#') {
+            e.preventDefault();
+            // Alterna la clase 'open' en el <li> padre para abrir/cerrar el submenú
+            this.parentElement.classList.toggle('open');
+            return;
+        }
+
+        // 3. Enlaces normales (.html o anclas reales)
+        if (navMenu && navMenu.classList.contains('active')) {
             closeMenuMobile();
         }
+        // No aplicamos preventDefault para que navegue normalmente
     });
 });
-
-/**
- * Cambia la sección activa
- * @param {string} sectionId - El ID de la sección a mostrar
- */
-function changeSection(sectionId) {
-    // Desactiva todas las secciones
-    sections.forEach(section => {
-        section.classList.remove('active');
-    });
-
-    // Activa la sección seleccionada
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.classList.add('active');
-        
-        // Desplaza al top de la página con animación suave
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-}
 
 /* ==================== MENÚ MÓVIL ==================== */
-/**
- * Abre/cierra el menú de navegación en dispositivos móviles
- */
-navToggle.addEventListener('click', function() {
-    navMenu.classList.toggle('active');
-});
+if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+    });
 
-/**
- * Cierra el menú móvil
- */
-function closeMenuMobile() {
-    navMenu.classList.remove('active');
+    document.addEventListener('click', function(event) {
+        const isClickInside = (navToggle && navToggle.contains(event.target)) || (navMenu && navMenu.contains(event.target));
+        if (!isClickInside) closeMenuMobile();
+    });
 }
 
-// Cierra el menú al hacer clic fuera de él
-document.addEventListener('click', function(event) {
-    const isClickInside = navToggle.contains(event.target) || navMenu.contains(event.target);
-    
-    if (!isClickInside) {
-        closeMenuMobile();
-    }
-});
-
-/* ==================== MODAL FORMULARIO ==================== */
-/**
- * Abre el modal del formulario de cita
- */
-function openModal() {
-    citaModal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Previene scroll en el fondo
+/* ==================== MODAL: listeners seguros */
+if (closeModal) closeModal.addEventListener('click', closeModalFunction);
+if (citaModal) {
+    citaModal.addEventListener('click', function(event) {
+        if (event.target === citaModal) closeModalFunction();
+    });
 }
 
-/**
- * Cierra el modal del formulario de cita
- */
-function closeModalFunction() {
-    citaModal.classList.remove('active');
-    document.body.style.overflow = 'auto'; // Restaura el scroll
-    citaForm.reset(); // Limpia el formulario
-}
-
-// Event listeners para cerrar el modal
-closeModal.addEventListener('click', closeModalFunction);
-
-citaModal.addEventListener('click', function(event) {
-    // Cierra el modal si se hace clic en el fondo (fuera del modal-content)
-    if (event.target === citaModal) {
-        closeModalFunction();
-    }
-});
-
-// Abre el modal cuando se hace clic en los botones de cita
-btnCitaHeader.addEventListener('click', openModal);
-btnCitaMain.addEventListener('click', openModal);
-btnCitaPrimeraVisita.addEventListener('click', openModal);
+if (btnCitaHeader) btnCitaHeader.addEventListener('click', openModal);
+if (btnCitaMain) btnCitaMain.addEventListener('click', openModal);
+if (btnCitaPrimeraVisita) btnCitaPrimeraVisita.addEventListener('click', openModal);
 
 /* ==================== FORMULARIO Y WHATSAPP ==================== */
-/**
- * Maneja el envío del formulario de cita
- * Recolecta los datos y redirige a WhatsApp con un mensaje preformateado
- */
-citaForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+if (citaForm) {
+    citaForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-    // Recolecta los datos del formulario
-    const nombres = document.getElementById('nombres').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const telefono = document.getElementById('telefono').value.trim();
-    const dni = document.getElementById('dni').value.trim();
-    const provincia = document.getElementById('provincia').value.trim();
-    const mensaje = document.getElementById('mensaje').value.trim();
+        const nombresEl = document.getElementById('nombres');
+        const emailEl = document.getElementById('email');
+        const telefonoEl = document.getElementById('telefono');
+        const dniEl = document.getElementById('dni');
+        const provinciaEl = document.getElementById('provincia');
+        const mensajeEl = document.getElementById('mensaje');
 
-    // Validación básica (aunque el formulario ya tiene 'required')
-    if (!nombres || !email || !telefono || !dni || !provincia) {
-        alert('Por favor completa todos los campos requeridos.');
-        return;
-    }
+        const nombres = nombresEl ? nombresEl.value.trim() : '';
+        const email = emailEl ? emailEl.value.trim() : '';
+        const telefono = telefonoEl ? telefonoEl.value.trim() : '';
+        const dni = dniEl ? dniEl.value.trim() : '';
+        const provincia = provinciaEl ? provinciaEl.value.trim() : '';
+        const mensaje = mensajeEl ? mensajeEl.value.trim() : '';
 
-    // Construye el mensaje para WhatsApp
-    // Usa %0A para saltos de línea y %0D para espacios
-    const whatsappMessage = encodeURIComponent(
-        `*SOLICITUD DE CITA MÉDICA*\n\n` +
-        `📋 *Datos Personales:*\n` +
-        `Nombre: ${nombres}\n` +
-        `Email: ${email}\n` +
-        `Teléfono: ${telefono}\n` +
-        `DNI: ${dni}\n` +
-        `Provincia: ${provincia}\n\n` +
-        `${mensaje ? `📝 *Mensaje Adicional:*\n${mensaje}\n\n` : ''}` +
-        `Quedo a la espera de su respuesta para confirmar la disponibilidad y agendar mi cita. ¡Gracias!`
-    );
+        if (!nombres || !email || !telefono || !dni || !provincia) {
+            alert('Por favor completa todos los campos requeridos.');
+            return;
+        }
 
-    // URL de WhatsApp con el número y el mensaje
-    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
+        const whatsappMessage = encodeURIComponent(
+            `*SOLICITUD DE CITA MÉDICA*\n\n` +
+            `📋 *Datos Personales:*\n` +
+            `Nombre: ${nombres}\n` +
+            `Email: ${email}\n` +
+            `Teléfono: ${telefono}\n` +
+            `DNI: ${dni}\n` +
+            `Provincia: ${provincia}\n\n` +
+            `${mensaje ? `📝 *Mensaje Adicional:*\n${mensaje}\n\n` : ''}` +
+            `Quedo a la espera de su respuesta para confirmar la disponibilidad y agendar mi cita. ¡Gracias!`
+        );
 
-    // Abre WhatsApp en una nueva ventana/pestaña
-    window.open(whatsappURL, '_blank');
-
-    // Cierra el modal
-    closeModalFunction();
-
-    // Muestra un mensaje de confirmación
-    alert('¡Gracias! Tu solicitud ha sido enviada. Se abrirá WhatsApp para completar la conversación.');
-});
+        const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
+        window.open(whatsappURL, '_blank');
+        closeModalFunction();
+        alert('¡Gracias! Tu solicitud ha sido enviada. Se abrirá WhatsApp para completar la conversación.');
+    });
+}
 
 /* ==================== INICIALIZACIÓN ==================== */
-/**
- * Asegura que la sección "Home" esté activa al cargar la página
- */
 document.addEventListener('DOMContentLoaded', function() {
-    // Activa la sección home por defecto
-    const homeSection = document.getElementById('home');
-    if (homeSection) {
-        homeSection.classList.add('active');
+    const activeSection = document.querySelector('.section.active');
+    if (!activeSection) {
+        const homeSection = document.getElementById('home');
+        if (homeSection) homeSection.classList.add('active');
     }
 
     console.log('✅ Centro de Terapia Física Valdiviezo - Sitio web iniciado correctamente');
     console.log('📞 Número de WhatsApp configurado:', WHATSAPP_NUMBER);
 
     const savedMode = localStorage.getItem('valdiviezoDarkMode');
-    if (savedMode === 'enabled') {
-        document.body.classList.add('dark-mode');
-    }
+    if (savedMode === 'enabled') document.body.classList.add('dark-mode');
 
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', function() {
@@ -205,31 +159,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /* ==================== FUNCIONES ADICIONALES ==================== */
-/**
- * Cierra el modal cuando se presiona la tecla Escape
- */
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' && citaModal.classList.contains('active')) {
+    if (event.key === 'Escape' && citaModal && citaModal.classList.contains('active')) {
         closeModalFunction();
     }
 });
 
-/**
- * Previene que el cuerpo haga scroll cuando el modal está abierto
- */
-function preventScroll(e) {
-    e.preventDefault();
-}
-
-// Nota: El prevent-scroll ya se maneja en las funciones openModal y closeModalFunction
-// usando document.body.style.overflow
-
-/* ==================== LOGGING ==================== */
-/**
- * Log de debugging - Descomenta si necesitas ver los eventos en la consola
- */
-// navLinks.forEach(link => {
-//     link.addEventListener('click', function() {
-//         console.log('Navegando a:', this.getAttribute('data-section'));
-//     });
-// });
